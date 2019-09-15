@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <p v-for="item in list">{{item}}</p>
+        <p v-for="(item,i) in list">{{item}}的索引是{{i}}</p>
+        <p v-for="(user,i) in list01">{{user.name}}--{{user.sex}}--索引是{{i}}</p>
+        <p v-for="(value,key,i) in student">值:{{value}}--键:{{key}}--索引:{{i}}</p>
+        <!-- v-for迭代数字  从 1 开始 -->
+        <p v-for="count in 5">第 {{count}} 次循环</p>
+    </div>
+</body>
+<script>
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            list:[0,1,2,3,4],
+            list01:[
+                {name:"张三",sex:'男'},
+                {name:'李四',sex:'男'},
+                {name:'小红',sex:'女'},
+                {name:'小梅',sex:'女'}
+            ],
+            student:{
+                stu01:'张三',
+                stu02:'李四',
+                stu03:'王五',
+                stu04:'赵六'
+            }
+        }
+    })
+</script>
+</html>

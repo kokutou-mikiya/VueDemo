@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+    <!--    <script src="vue.min.js"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+<body>
+
+<div id="app">
+    <button @click="run">run</button>
+    <button @click="stop">stop</button>
+    <br>
+    {{message}}
+</div>
+
+<script>
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            message:"跑马灯效果展示！"
+        },
+        methods:{
+            //ES6  语法  () =>  解决this的指向问题
+            run(){
+                setInterval( () => {
+                    //获取 首位字符
+                    var start = this.message.substring(0,1);
+                    //获取 末尾字符
+                    var end = this.message.substring(1);
+                    //重新拼接得到的字符串，并赋值给 this.message
+                    this.message = end + start;
+                },500)
+
+            // run(){
+            //     var _this = this;
+            //     setInterval(function () {
+            //         //获取 首位字符
+            //         var start = _this.message.substring(0,1);
+            //         //获取 末尾字符
+            //         var end = _this.message.substring(1);
+            //         //重新拼接得到的字符串，并赋值给 this.message
+            //         _this.message = end + start;
+            //     },500)
+            //     //注意：VM实例，实时监听并改变改变的数据，并在页面反馈
+             }
+        }
+    })
+</script>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    id:<input type="text" placeholder="id" v-model="id">
+    name:<input type="text" placeholder="name" v-model="name">
+    <input type="button" value="添加" @click="add">
+
+    <!-- 注意: v-for 循环的时候,key 只能使用 number获取string -->
+    <!-- 注意: key 在使用的时候,必须使用 v-bind 属性绑定的形式,指定 key的值-->
+    <p v-for="(item,i) in user" :key="i">
+        <label>
+            <input type="checkbox">
+            {{item.id}}--{{item.name}}
+        </label>
+    </p>
+</div>
+</body>
+<script>
+    var vue = new Vue({
+        el:"#app",
+        data:{
+            id:'',
+            name:'',
+            user:[
+                {id:1,name:'张三'},
+                {id:2,name:'李四'},
+                {id:3,name:'王五'},
+                {id:4,name:'赵六'}
+            ]
+        },
+        methods:{//添加方法
+            add(){
+                this.user.push({id:this.id, name:this.name});
+            }
+        }
+    })
+</script>
+</html>
