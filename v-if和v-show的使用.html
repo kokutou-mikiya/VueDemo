@@ -11,17 +11,32 @@
         <!-- v-if 每次重新删除/创建元素  切换性能消耗高-->
         <!-- v-show 只是切换了元素的  display:none 样式  较高的初始渲染消耗-->
         <input type="button" @click="toggle" value="toggle">
-        <input type="button" @click="flag=!flag" value="flag=!flag">
+        <input type="button" @click="flag = !flag" value="flag=!flag">
 
         <p v-if="flag">v-if控制的元素</p>
+
         <p v-show="flag">v-show控制的元素</p>
+
+        <hr>
+        <h3>v-if  v-else</h3>
+
+        <!--通过age数值   动态显示年龄层-->
+        age = <input type="text" v-model="age">
+
+        <p  v-if="age<=6">儿童</p>
+        <p  v-else-if="age>6&&age<=17">少年</p>
+        <p  v-else-if="age>=18&&age<30">青年</p>
+        <p  v-else-if="age>=30&&age<50">中年</p>
+        <p  v-else-if="age>=50&&age<100">老年</p>
+        <p  v-else>死了</p>
     </div>
 </body>
 <script>
     var vue = new Vue({
         el:"#app",
         data:{
-            flag:true
+            flag:true,
+            age: null
         },
         methods:{
             toggle(){
