@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <!-- 开发环境版本，包含了有帮助的命令行警告 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- v-text用法与{{}}一样，需要写在标签内 -->
+        <p>插值表达式：message = {{message}}</p>
+        <p>插值表达式：age = {{age}}</p>
+        <p>数学运算: age+5 = {{age+5}}</p>
+        <p>三元运算符：age>25?true:false = {{age>25?true:false}}</p>
+        <p>随机数：Math.random() = {{Math.random()}}</p>
+
+        <hr>
+
+        <!-- v-html  -->
+        <p v-html="htmlText"></p>
+    </div>
+</body>
+<script>
+    let vm = new Vue({
+        el: "#app",
+        data: {
+            age: 25,
+            message: "你好！",
+            htmlText: "<h1>输出HTML</h1>"
+        }
+    })
+</script>
+</html>

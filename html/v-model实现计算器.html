@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-model="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Vue练习</title>
@@ -22,11 +22,24 @@
     <input type="button" value="=" @click="calc">
 
     <input type="text" v-model="result">
+
+    <hr>
+    <!-- v-model 和 v-bind  -->
+    <p>v-bind 动态绑定属性 不能双向</p>
+    <p>v-model 双向绑定 只能用在表单数据中</p>
+    <pre>
+        <p>语法一：v-model:value = "key"</p>
+        <input type="text" v-model:value="num01">
+
+        <p>语法二：v-model = "key"</p>
+        <input type="text" v-model="num02">
+    </pre>
+
 </div>
 
 </body>
 <script>
-    var vue = new Vue({
+    let vue = new Vue({
         el:"#app",
         data:{
             num01:0,
