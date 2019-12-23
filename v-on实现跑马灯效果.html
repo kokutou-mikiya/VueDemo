@@ -5,6 +5,15 @@
     <title>跑马灯</title>
     <!--    <script src="vue.min.js"></script>-->
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <style>
+        #app{
+            height: 100px;
+            width: 400px;
+            background-color: bisque;
+        }
+    </style>
+
+
 </head>
 <body>
 
@@ -12,26 +21,35 @@
     <button @click="run">run</button>
     <button @click="stop">stop</button>
     <br>
-    {{message}}
+    <h1>{{message}}</h1>
 </div>
 
 <script>
-    var vm = new Vue({
+    let vm = new Vue({
         el:"#app",
         data:{
-            message:"跑马灯效果展示！"
+            message: "跑马灯效果展示！",
+            intervalId: null
+        },
+        mounted(){
+          this.run();
         },
         methods:{
             //ES6  语法  () =>  解决this的指向问题
-            run(){
-                setInterval( () => {
+            run() {
+                //避免定时器重复多次开启
+                if (this.intervalId != null) {
+                    return;
+                }
+                this.intervalId = setInterval(() => {
                     //获取 首位字符
-                    var start = this.message.substring(0,1);
+                    let start = this.message.substring(0, 1);
                     //获取 末尾字符
-                    var end = this.message.substring(1);
+                    let end = this.message.substring(1);
                     //重新拼接得到的字符串，并赋值给 this.message
                     this.message = end + start;
-                },500)
+                }, 500)
+            },
 
             // run(){
             //     var _this = this;
@@ -44,7 +62,14 @@
             //         _this.message = end + start;
             //     },500)
             //     //注意：VM实例，实时监听并改变改变的数据，并在页面反馈
-             }
+            // }
+
+
+            stop(){ //停止计时器
+                clearInterval(this.intervalId);
+                //每当清除了定时器后，需要重新赋值intervalId=null，下次开启才能运行
+                this.intervalId = null;
+            }
         }
     })
 </script>
